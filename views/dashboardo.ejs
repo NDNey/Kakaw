@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <link rel="stylesheet" href="/CSS/style.css">
+    <title>Feed Page</title>
+</head>
+<body>
+    <div class='ui container stackable'>
+        <%- include('partials/header'); %>
+        <div class="ui grid container">
+            <div class="ten wide column">
+                <h1>Welcome, <%= user.displayName %>!</h1>
+                <div id="share-post" class="ui top attached button">Share something with your pans</div>
+                <form class="ui form share-form hide" enctype="multipart/form-data" method="POST" action="/feed/createPost">
+                    <textarea name="content" id="post-body" cols="30" rows="10"></textarea>
+                    <input type="file" name="image" required/>
+                    <button class="ui blue bottom attached fluid button" type="submit">Submit</button>
+                </form>
+
+                <% for (let i = 0; i < posts.length; i++) { %>
+                    <div class="ui orange padded segment segmentOverflow">
+                        <h5 class="ui header">
+                            <img src="https://res.cloudinary.com/pansmeet/image/upload/v1620107720/dummyProfile_olgpyn.png" class="ui circular image">
+                            <%= posts[i].user.displayName %>
+                        </h5>
+                        <div class="ui grid">
+                            <div class="eight wide column">
+                                <div class="ui fluid medium image">
+                                    <a class="ui right corner large label">
+                                      <i class="heart icon"></i>
+                                    </a>
+                                    <img src="<%= (posts[i].postPicUrl) ? posts[i].postPicUrl : 'https://res.cloudinary.com/pansmeet/image/upload/v1620108017/squint_cf0moy.png' %>">
+                                </div>
+                            </div>
+                            <div class=" eight wide column">
+                                <p><%= posts[i].content %></p>
+                            </div>
+                        </div>
+                        <div class="ui grid">
+                            <div class="ten wide column"></div>
+                            <div class="six wide column <%= posts[i]._id %> <%= posts[i].cloudinary_id %>">
+                                <a class="ui right floated label editPost"><i class="edit icon"></i>EDIT BLURB</a>
+                                <a class="ui label deletePost"><i class="delete icon"></i>  DELETE</a>
+                            </div>
+                        </div>
+                    </div>
+                <% } %>
+                
+            </div>
+            <div class="six wide column">
+                <img class="ui medium circular centered column image" src="https://res.cloudinary.com/pansmeet/image/upload/v1620102125/baby_gzvluj.jpg">
+                <h3 class="greeting">Hey there, nice to see you!</h3>
+            </div>
+            
+            
+        </div>
+    </div>
+    
+
+
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
