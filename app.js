@@ -48,6 +48,6 @@ app.use('/', require('./routes/index'))
 app.use('/auth', require('./routes/auth'))
 
 
-const PORT = process.env.PORT || 8000
+const PORT = process.env.PORT || PORT
 
 app.listen(PORT, console.log(`server running in ${process.env.NODE_ENV} mode on port ${PORT}`))
