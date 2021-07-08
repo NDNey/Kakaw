@@ -4,8 +4,7 @@
   "description": "app to save links",
   "main": "index.js",
   "scripts": {
-    "start": "node app",
-    "dev": "cross-env NODE_ENV=development nodemon app"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "David Ney",
   "license": "MIT",
