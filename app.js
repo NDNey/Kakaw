@@ -50,4 +50,6 @@ app.use('/auth', require('./routes/auth'))
 
 const PORT = process.env.PORT || PORT
 
-app.listen(PORT, console.log(`server running in ${process.env.NODE_ENV} mode on port ${PORT}`))
+app.listen(PORT, ()=>{
+    console.log(`server running in ${process.env.NODE_ENV} mode on port ${PORT}`)
+})
